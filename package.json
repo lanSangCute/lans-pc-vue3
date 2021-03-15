@@ -1,0 +1,42 @@
+{
+  "name": "msp-pc-common",
+  "version": "0.0.1-0",
+  "scripts": {
+    "dev": "bash -e dev.sh && vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "build:lib": "rollup -c",
+    "bashGit": "bash git.sh",
+    "bashGitBefore": "bash gitBefore.sh",
+    "buildPub": "npm run build:lib && npm publish --registry http://registry.npmjs.org && npm run bashGit",
+    "pub": "npm run bashGitBefore && npm version prerelease && npm run buildPub",
+    "pub:patch": "npm run bashGitBefore && npm version patch && npm run buildPub",
+    "pub:minor": "npm run bashGitBefore && npm version minor && npm run buildPub",
+    "pub:major": "npm run bashGitBefore && npm version major && npm run buildPub"
+  },
+  "main": "dist/msp-pc-common.cjs.js",
+  "module": "dist/msp-pc-common.esm.js",
+  "browser": "dist/msp-pc-common.umd.js",
+  "files": [
+    "dist/"
+  ],
+  "dependencies": {
+    "element-plus": "^1.0.2-beta.33",
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@types/ms": "^0.7.31",
+    "@vitejs/plugin-vue": "^1.1.5",
+    "@vue/compiler-sfc": "^3.0.5",
+    "rollup": "^2.41.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.1.0",
+    "typescript": "^4.2.3",
+    "vite": "^2.0.5",
+    "vue3-lan": "0.0.11-5"
+  }
+}
