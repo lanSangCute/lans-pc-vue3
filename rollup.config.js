@@ -8,7 +8,7 @@ export default [
   {
     input: 'src/packages/index.ts',
     output: {
-      name: 'msp-pc-common',
+      name: 'lans-pc-vue3',
 			file: pkg.browser,
 			format: 'umd'
     },

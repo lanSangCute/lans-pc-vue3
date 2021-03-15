@@ -1,5 +1,5 @@
 {
-  "name": "msp-pc-common",
+  "name": "lans-pc-vue3",
   "version": "0.0.1-0",
   "scripts": {
     "dev": "bash -e dev.sh && vite",
@@ -14,9 +14,9 @@
     "pub:minor": "npm run bashGitBefore && npm version minor && npm run buildPub",
     "pub:major": "npm run bashGitBefore && npm version major && npm run buildPub"
   },
-  "main": "dist/msp-pc-common.cjs.js",
-  "module": "dist/msp-pc-common.esm.js",
-  "browser": "dist/msp-pc-common.umd.js",
+  "main": "dist/lans-pc-vue3.cjs.js",
+  "module": "dist/lans-pc-vue3.esm.js",
+  "browser": "dist/lans-pc-vue3.umd.js",
   "files": [
     "dist/"
   ],
