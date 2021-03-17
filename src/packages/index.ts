@@ -2,7 +2,7 @@ export * from "./interface";
 import { components } from "./components"; 
 import { defineAsyncComponent } from 'vue'
 
-const publish = 'lans-pc-vue3';
+const publish = 'lans-vue3';
 export const mspPcCommonModule:any = {
     install: (app:any, options:Object) => {
       
