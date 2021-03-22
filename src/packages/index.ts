@@ -1,8 +1,9 @@
-export * from "./interface";
-import { components } from "./components"; 
-import { defineAsyncComponent } from 'vue'
+export * from "./types";
+export * from "./components";
 
-const publish = 'lans-vue3';
+import { components } from "./components"; 
+
+
 export const mspPcCommonModule:any = {
     install: (app:any, options:Object) => {
       
@@ -14,11 +15,8 @@ export const mspPcCommonModule:any = {
 
       // 添加全局组件
       components.forEach(component => {
-            app.component(`${publish}-${component.name}`, defineAsyncComponent(() =>
-                import(`./components/${component.url}`)
-            ));
-
-        });
+          app.component(`lans-${component.name}`, component);
+      });
     },
 }
 
