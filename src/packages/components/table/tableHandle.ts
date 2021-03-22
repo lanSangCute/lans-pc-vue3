@@ -47,7 +47,7 @@ export class FormatColumn {
             const utilsFunc:UtilsFunc = new UtilsFunc();
             const column = utilsFunc.isFilter(this.tableColumn, (item:TableColumn,index:Number) => {
                 return item.value === row.property;
-            });
+            }) as TableColumn;
             if (column["valueFun"]) {
                 return column.valueFun.call(this, data);
             }
