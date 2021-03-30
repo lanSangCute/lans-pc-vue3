@@ -46,7 +46,7 @@ export interface FormItem{
     fullLine?:boolean;//代表占据的空间。是否占据全行
     className?:string;//针对formItem的class
     noLabel?:boolean;//去除label，包含对应的dom空间
-    rules?:object;//规则
+    rules?:Array<any>;//规则
     default?:String | Boolean | Number | Function | Array<any>;//默认值
     changeToEmit?:Boolean;//是否在该字段发生变化的时候，触发事件更新
     render?:Function;//type为render时，此字段必传。此字段只有对应type=render有效
