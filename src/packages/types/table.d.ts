@@ -25,13 +25,13 @@ export interface ElComponentTableComps {
  * @export
  * @interface ElComponentTableCAttrs
  */
-export interface ElComponentTableCAttrs<T=String> {
+export interface ElComponentTableCAttrs<T=string> {
     type?: T;//对应列的类型。如果设置了 selection 则显示多选框；如果设置了 index 则显示该行的索引（从 1 开始计算）；如果设置了 expand 则显示为一个可展开的按钮 (selection/index/expand)
     index?: Number | Function;//如果设置了 type=index，可以通过传递 index 属性来自定义索引 (index):void=>{}
     columnKey?:T;//column 的 key，如果需要使用 filter-change 事件，则需要此属性标识是哪个 column 的筛选条件
     label?: T;//显示的标题
-    prop?: T;//对应列内容的字段名，也可以使用 property 属性
-    property?: T;//对应列内容的字段名，也可以使用 property 属性
+    prop: T;//对应列内容的字段名，也可以使用 property 属性
+    property: T;//对应列内容的字段名，也可以使用 property 属性
     width?: T | Number;//对应列的宽度
     minWidth?: Number | T;//对应列的最小宽度，与 width 的区别是 width 是固定的，min-width 会把剩余宽度按比例分配给设置了 min-width 的列
     fixed?: T| Boolean;//列是否固定在左侧或者右侧，true 表示固定在左侧true, left, right
@@ -76,7 +76,7 @@ export interface TableColumnButtons {
  * @export
  * @interface TableColumn<T=String>
  */
-export interface TableColumn<T=String> {
+export interface TableColumn<T=string> {
     readonly id?:T;//key的标志
     label?:T;//显示的标题
     value?:T;//对应列内容的字段名

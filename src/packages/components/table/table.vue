@@ -1,6 +1,9 @@
 <template>
     <div class="component-configTable">
-        <slot name="head" v-bind="getFullData"> </slot>
+        <slot
+            name="head"
+            v-bind="getFullData"
+        />
         <el-table
             ref="refTable"
             v-bind="$attrs"
@@ -18,7 +21,11 @@
                 #empty
                 class="flex-ju-al-center"
             >
-                <img class="my-24" src="./noContent.svg" alt />
+                <img
+                    class="my-24"
+                    src="./noContent.svg"
+                    alt
+                >
             </template>
             <template v-for="(cln, index) in tableColumn">
                 <template v-if="cln.type == 'select'">
@@ -29,7 +36,7 @@
                         :width="cln.width || 50"
                         align="center"
                         :selectable="cln.selectable"
-                    ></el-table-column>
+                    />
                 </template>
                 <template v-else-if="cln.type === 'radio'">
                     <el-table-column
@@ -42,7 +49,9 @@
                         <template #default="scope">
                             <el-radio
                                 v-model="radioSelect"
-                                :label="scope.$index" @change="radioChange">
+                                :label="scope.$index"
+                                @change="radioChange"
+                            >
                                 &nbsp;&nbsp;
                             </el-radio>
                         </template>
@@ -56,7 +65,7 @@
                         type="index"
                         :prop="cln.value"
                         :width="cln.width || 50"
-                    ></el-table-column>
+                    />
                 </template>
                 <template v-else-if="cln.type == 'operate'">
                     <el-table-column
@@ -65,14 +74,14 @@
                         :label="cln.label"
                         :width="cln.width || autoWith(cln.buttons)"
                         :class-name="cln.className"
-                         :align="cln.align || align"
+                        :align="cln.align || align"
                     >
                         <template #default="scope">
                             <template v-for="btn in cln.buttons">
                                 <el-button
                                     v-if="btnCondition(btn, scope.row)"
-                                    :disabled="btnDisabled(btn, scope.row)"
                                     :key="btn.click"
+                                    :disabled="btnDisabled(btn, scope.row)"
                                     size="small"
                                     :class="btn.className"
                                     type="text"
@@ -104,19 +113,22 @@
                                         index: scope.$index
                                     }"
                                 />
-                                <div v-if="cln.columnMove" class="ml-8">
+                                <div
+                                    v-if="cln.columnMove"
+                                    class="ml-8"
+                                >
                                     <el-button
                                         type="text"
                                         icon="el-icon-top"
                                         :disabled="scope.$index === 0"
                                         @click="columnMove('top',scope.row,cln,scope.$index)"
-                                    ></el-button>
+                                    />
                                     <el-button
                                         type="text"
                                         icon="el-icon-bottom"
                                         :disabled="scope.$index === (tableData || []).length -1"
                                         @click="columnMove('bottom',scope.row,cln,scope.$index)"
-                                    ></el-button>
+                                    />
                                 </div>
                             </div>
                         </template>
@@ -135,11 +147,23 @@
                         :formatter="formatFun"
                         show-overflow-tooltip
                     >
-                        <template v-if="cln.header" #header="scope">
-                            <slot v-bind="scope" :name="cln.header"></slot>
+                        <template
+                            v-if="cln.header"
+                            #header="scope"
+                        >
+                            <slot
+                                v-bind="scope"
+                                :name="cln.header"
+                            />
                         </template>
-                        <template v-if="cln.slot" #default="scope">
-                            <slot v-bind="scope" :name="cln.slot"></slot>
+                        <template
+                            v-if="cln.slot"
+                            #default="scope"
+                        >
+                            <slot
+                                v-bind="scope"
+                                :name="cln.slot"
+                            />
                         </template>
                     </el-table-column>
                 </template>
@@ -148,13 +172,16 @@
         <!-- 加form表单disabled-false，保证在表单的列表不受表单的状态影响 -->
         <el-form :disabled="false">
             <lans-v-pagination
-                class="tncm-pagination"
                 v-if="pagination"
+                class="tncm-pagination"
                 :page="pager"
                 :total="total"
                 @change="pageChange"
             />
-            <slot name="foot" v-bind="getFullData"> </slot>
+            <slot
+                name="foot"
+                v-bind="getFullData"
+            />
         </el-form>
     </div>
 </template>

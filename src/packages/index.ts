@@ -1,13 +1,13 @@
 export * from "./types";
 export * from "./components";
-
+export * from "./utils"
 import { components } from "./components"; 
 
 
-export const mspPcCommonModule:any = {
+export const lansPcCommonModule:any = {
     install: (app:any, options:Object) => {
       
-      console.log('install：msp-common')
+      console.log('lans-common')
       // 添加全局实例方法
     //   app.config.globalProperties.$config = config;
  

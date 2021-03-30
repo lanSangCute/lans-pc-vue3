@@ -21,11 +21,21 @@
     "dist/"
   ],
   "dependencies": {
+    "@ehutch79/vite-eslint": "0.0.1",
     "element-plus": "^1.0.2-beta.33",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-vue": "^7.8.0",
+    "lodash": "^4.17.21",
+    "typescript-eslint-parser": "^22.0.0",
+    "vite-plugin-eslint": "^1.1.0",
     "vue": "^3.0.5"
   },
   "devDependencies": {
     "@types/ms": "^0.7.31",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
     "@vitejs/plugin-vue": "^1.1.5",
     "@vue/compiler-sfc": "^3.0.5",
     "rollup": "^2.41.1",

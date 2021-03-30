@@ -1,25 +1,26 @@
 <template>
-  <example />
+    <Example />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import example from './examples/index.vue'
+import { defineComponent } from 'vue';
+import Example from './examples/index.vue';
+
 export default defineComponent({
-  name: 'App',
-  components: {
-    example
-  },
-})
+    name: 'App',
+    components: {
+        Example
+    }
+});
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    #app {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
 </style>

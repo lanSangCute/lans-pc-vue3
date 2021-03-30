@@ -36,6 +36,8 @@ git push
 git checkout -b $versioncode
 # 提交之远程分支
 git push origin $versioncode
+# 删除分支
+git branch -d $versioncode
 # 切换回dev分支
 git checkout dev
 

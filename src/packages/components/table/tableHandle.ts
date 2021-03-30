@@ -5,7 +5,7 @@ import {
     TableColumn,
     Options,
 } from '../../types';
-import dayjs from 'dayjs'
+import { TimeUtils } from '../../utils'
 // buttons处理
 export class OpBtnsHandle{
     constructor(){
@@ -42,8 +42,9 @@ export class FormatColumn {
         this.tableColumn = tableColumn;
         this.formatFun = this.formatFun.bind(this)
     }
-    formatFun(data:{[propName:string] : any}, row:ElComponentTableCAttrs) {
+    formatFun(data:Object, row:ElComponentTableCAttrs) {
         try{
+            // const property = row.property;
             const utilsFunc:UtilsFunc = new UtilsFunc();
             const column = utilsFunc.isFilter(this.tableColumn, (item:TableColumn,index:Number) => {
                 return item.value === row.property;
@@ -51,25 +52,26 @@ export class FormatColumn {
             if (column["valueFun"]) {
                 return column.valueFun.call(this, data);
             }
+            const propData = (data as any)[row.property];
             if (column["rewrite"]) {
-                const propData = data[row.property];
+                // const propData = (data as any)[row.property];
                 if(column["rewrite"].constructor === [].constructor){
-                    let arrList = column["rewrite"].filter((item:Options)=>String(item.value) === String(propData))
+                    let arrList = (column["rewrite"] as Array<Options>).filter((item:Options)=>String(item.value) === String(propData))
                     return Array.isArray(arrList)&&arrList.length?arrList[0]['label']:propData;
                 }
                 return column.rewrite[propData] || propData;
             }
             if (column["type"] === "date") {
-                if(!data[row.property]){
+                if(!propData){
                     return '--';
                 }
-                let format = column["format"];
-                const dateFormat:DateFormat = new DateFormat();
-                return dateFormat.formatting(new Date(data[row.property]),format);
+                let timeFormat = column["format"];
+                const {formatting}:TimeUtils = new TimeUtils();
+                return formatting(new Date(propData),timeFormat);
             }
-            return data[row.property];
+            return propData;
         }catch(e){
-            return data[row.property];
+            return (data as any)[row.property];
         }
     }
 }
@@ -156,7 +158,7 @@ export class UtilsFunc {
                     if (!Object.prototype.hasOwnProperty.call(json1, key)) {
                         continue;
                     }
-                    result[key] = json1[key];
+                    (result as any)[key] = (json1 as any)[key];
                 }
             }
             for (let key in json2) {
@@ -164,9 +166,9 @@ export class UtilsFunc {
                     continue;
                 }
                 if (typeof result[key] === "object" && typeof json2 === "object") {
-                    result[key] = this.mergeJSON(result[key], json2[key]);
+                    (result as any)[key] = this.mergeJSON((result as any)[key], (json2 as any)[key]);
                 } else {
-                    result[key] = json2[key];
+                    (result as any)[key] = (json2 as any)[key];
                 }
             }
         } else if (Array.isArray(json1) && Array.isArray(json2)) {
@@ -180,13 +182,5 @@ export class UtilsFunc {
             result = json2;
         }
         return result;
-    }
-}
-
-export class DateFormat {
-    constructor(){
-    }
-    formatting(date:Number | Date | String,format:String='YYYY-MM-DD HH:mm:ss'){
-        return dayjs(date).format(format);
     }
 }

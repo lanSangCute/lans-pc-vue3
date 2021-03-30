@@ -6,7 +6,7 @@ import {
     Pager,
 } from '../../types';
 import { PropType,ref,toRefs,computed,reactive,watch,defineComponent,nextTick } from 'vue' 
-import funcRender from '../funcRender/funcRender.vue'
+import funcRender from './blocks/funcRender.vue'
 import {ElTable} from 'element-plus';
 import {
     OpBtnsHandle,
@@ -133,11 +133,11 @@ export default defineComponent({
             emit("selection-change", selectList);
         }
         // 单选触发事件
-        const radioChange = (index:Number | String):void => {
-            emit("radio-change", tableData.value[index]);
+        const radioChange = (index:number):void => {
+            emit("radio-change", (tableData.value as Array<any>)[index]);
         }
         // type---top-上移 bottom-下移 index---当前index
-        const columnMove = (type:String,row:Object,column:TableColumn,index:Number)=>{
+        const columnMove = (type:String,row:Object,column:TableColumn,index:number)=>{
             if(type === 'top'){//上移
                 if(column.columnMoveTop){
                     return emit('columnMoveTop',{row,column,index})
@@ -211,22 +211,23 @@ export default defineComponent({
                     httpHandle.setPagerNumber(1);
                 }
                 loading.value = true;
-                const url = props.services as String,
-                    params = paramHandle.getParam() as Object;
-
-                // let result = await props.postHandle(params).catch(err=>{
-                //     loading.value = false;
-                //     throw err;
-                // });
+                const params = paramHandle.getParam() as Object;
                 let result:ResultTable | Array<any> = [];
-                // result = await http({
-                //         url,
-                //         data: params
-                //     })
-                //     .catch((err:never) => {
-                //         loading.value = false;
-                //         throw err;
-                //     });
+                if(props.postHandle){
+                    result = await props.postHandle(params).catch(err=>{
+                        loading.value = false;
+                        throw err;
+                    });
+                }else if(props.services){
+                    // result = await http({
+                    //     url,
+                    //     data: params
+                    // })
+                    // .catch((err:never) => {
+                    //     loading.value = false;
+                    //     throw err;
+                    // });
+                }
                 paramHandle.lastQueryParams = params;//存储最近的一次参数
                 loading.value = false;
                 if (props.dataFormatHandle) {
@@ -262,7 +263,7 @@ export default defineComponent({
         const buttonsHandle = reactive({
             btnCondition,// 该按钮显示与否 conditionFun:(row):boolean=>{}
             btnDisabled,// 该按钮是否disabled disabledFunc:(row):boolean=>{}
-            btnClick, // 回掉函数，该按钮点击事件 click:(row):void=>{}
+            btnClick, // 回调函数，该按钮点击事件 click:(row):void=>{}
         })
         /**
          * @desc table-column：formatter
