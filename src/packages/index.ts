@@ -7,7 +7,7 @@ import { components } from "./components";
 export const lansPcCommonModule:any = {
     install: (app:any, options:Object) => {
       
-      console.log('lans-common')
+      console.log('install：lans-common');
       // 添加全局实例方法
     //   app.config.globalProperties.$config = config;
  

@@ -28,7 +28,9 @@ module.exports = {
 	  'no-var': [
 		  'error'
 	  ],
+	  'vue/no-deprecated-slot-attribute': 'off',
 	  "no-console":"off",
+	  "vue/require-default-prop": 0
 	  // 自己写一些想配置的规则
 	},
 	overrides: [

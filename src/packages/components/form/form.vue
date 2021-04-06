@@ -14,8 +14,6 @@ import {
     FormItem, AlignType, ConfigForm
 } from '../../types';
 
-// const noop = () => {};
-
 export default defineComponent({
     name: 'v-form',
     props: {
@@ -46,12 +44,12 @@ export default defineComponent({
         // label位置,默认左对齐
         labelPosition: {
             type: String as PropType<AlignType>,
-            default: 'left'
+            default: 'right'
         },
         // label和value之前的分隔符
         labelSuffix:{
             type: String as PropType<String>,
-            default: ''
+            default: ':'
         },
         // 默认分割col个为一行
         col: {
@@ -336,12 +334,12 @@ export default defineComponent({
             }
 
             if (item.type === 'empty') {
-                formItem = h('span', {},
+                formItem = h('span', null,
                     {
                         default:() => '\u00A0'// 类似于&nbsp;
                     });
             } else if (item.type === 'string') {
-                formItem = h('span', {},
+                formItem = h('span', null,
                     {
                         default:() => this.formData[item.key]
                     });
@@ -389,7 +387,7 @@ export default defineComponent({
         if (colDivSign) {
             const formItemRender = formItemList;
 
-            formItemList = h(ElRow, {}, {
+            formItemList = h(ElRow, null, {
                 default:() => formItemRender
             });
         }
@@ -407,8 +405,8 @@ export default defineComponent({
             key: 'form'
         }, {
             default:() => [
-                formItemList
-                // this.$slots.inline()
+                formItemList,
+                this.$slots.inline?.()
             ]
         });
     }

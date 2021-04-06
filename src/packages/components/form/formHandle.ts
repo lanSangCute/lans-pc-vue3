@@ -156,7 +156,7 @@ export class RulesHandle{
                 'datetime',
                 'daterange',
                 'datetimerange',
-            ]
+            ];
             requiredRule = {
                 required: true,
                 message: item.placeholder?item.placeholder
@@ -168,8 +168,8 @@ export class RulesHandle{
         return requiredRule;
     }
     getEmailRules(){
-        const { item } =this
-        let emailRule = null
+        const { item } = this;
+        let emailRule = null;
         if(item.type === 'email'){
             emailRule = {
                 pattern: /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/,
@@ -181,8 +181,8 @@ export class RulesHandle{
     }
     // 移动电话
     getTelMoblieRules(){
-        const { item } =this
-        let telRule = null
+        const { item } = this;
+        let telRule = null;
         if(item.type === 'number' && item.telMoblie){
             telRule = {
                 pattern: /^(\+)?(\d{2,3})?1\d{10}$/,
@@ -190,12 +190,12 @@ export class RulesHandle{
                 trigger: 'blur'
             }
         }
-        return telRule
+        return telRule;
     }
     // 固定电话
     getTelFixedRules(){
-        const { item } =this
-        let telRule = null
+        const { item } = this;
+        let telRule = null;
         if((!item.type || item.type === 'input') && item.telFixed){
             telRule = {
                 pattern: /^0\d{2,3}-?\d{7,8}$/,
@@ -203,7 +203,7 @@ export class RulesHandle{
                 trigger: 'blur'
             }
         }
-        return telRule
+        return telRule;
     }
     
 }

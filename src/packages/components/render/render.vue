@@ -4,7 +4,7 @@ import {
 } from 'vue';
 
 export default defineComponent({
-    name: 'FunctionRender',
+    name: 'v-render',
     functional: true,
     props: {
         data: {

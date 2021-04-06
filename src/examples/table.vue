@@ -5,7 +5,7 @@
             class="px-8"
             :table-column="tableColumn"
             :import-data="tableData"
-            :param="params"
+            :params="params"
             @selection-change="selectionChange"
             @radio-change="radioChange"
             @columnMoveTop="columnMoveTop"
@@ -67,7 +67,7 @@ import {
     TableColumn, vTable
 } from '../packages';
 
-interface tableItem<T=String> {
+interface TableItem<T=String> {
   readonly id: Number | T;
   ernestMoney: T,
   status: T,
@@ -86,7 +86,7 @@ export default defineComponent({
             { // 字段格式化
                 label: '定金(元)',
                 value: 'ernestMoney',
-                valueFun: (row: tableItem): String => `${row.ernestMoney}-lanjuan`
+                valueFun: (row: TableItem): String => `${row.ernestMoney}-lanjuan`
             },
             { // 枚举
                 label: '状态',
@@ -115,20 +115,20 @@ export default defineComponent({
                 buttons:[
                     {
                         label: '新增',
-                        disabledFunc: (row: tableItem) => row.status === '2', // 转发为2不可编辑
-                        click: (row: tableItem) => {
+                        disabledFunc: (row: TableItem) => row.status === '2', // 转发为2不可编辑
+                        click: (row: TableItem) => {
                             console.log(`新增:${row.id}`);
                         },
-                        conditionFun: (row: tableItem) => [1, 2, 3].includes(Number(row.id)),
+                        conditionFun: (row: TableItem) => [1, 2, 3].includes(Number(row.id)),
                         className:'className'
                     },
                     {
                         label: '修改',
-                        disabledFunc: (row: tableItem) => [1, 2].includes(Number(row.id)),
-                        click: (row: tableItem) => {
+                        disabledFunc: (row: TableItem) => [1, 2].includes(Number(row.id)),
+                        click: (row: TableItem) => {
                             console.log(`修改:${row.id}`);
                         },
-                        conditionFun: (row: tableItem) => [2, 3, 4].includes(Number(row.id)),
+                        conditionFun: (row: TableItem) => [2, 3, 4].includes(Number(row.id)),
                         className: 'className'
                     }
                 ]
@@ -176,7 +176,7 @@ export default defineComponent({
                 test1:'ee'
             } as Object
         });
-        const tableData = reactive<Array<tableItem>>([
+        const tableData = reactive<Array<TableItem>>([
             {
                 id: 1,
                 ernestMoney: '1',
@@ -211,12 +211,12 @@ export default defineComponent({
             }
         ]);
 
-        const selectionChange = (selectList: Array<tableItem>) => {
+        const selectionChange = (selectList: Array<TableItem>) => {
             console.info('多选被选择的数据：');
             console.table(selectList);
         };
 
-        const radioChange = (row: tableItem) => {
+        const radioChange = (row: TableItem) => {
             console.info('单选被选择的数据：', row);
         };
         const getParam = ():Object => (refTable1.value as any).getParam();

@@ -1,17 +1,7 @@
-<template>
-    <el-pagination
-        v-bind="$attrs"
-        :page-size="pager.pageSize"
-        :current-page="pager.pageNo"
-        layout="total, sizes, prev, pager, next, jumper"
-        class="flex-ju-end mt-20"
-        @size-change="sizeChange"
-        @current-change="currentChange"
-    />
-</template>
 <script lang="ts">
+import { ElPagination } from 'element-plus';
 import {
-    PropType, toRefs, reactive, watch, defineComponent
+    PropType, toRefs, reactive, watch, defineComponent, h
 } from 'vue';
 import { Pager } from '../../types';
 
@@ -57,6 +47,23 @@ export default defineComponent({
             sizeChange,
             currentChange
         };
+    },
+    render(){
+        const {
+            $attrs,
+            pager,
+            sizeChange,
+            currentChange
+        } = this;
+        return h(ElPagination, {
+            'page-size': pager.pageSize,
+            'current-page': pager.pageNo,
+            layout: 'total, sizes, prev, pager, next, jumper',
+            class: 'flex-ju-end mt-20',
+            onSizeChange: sizeChange,
+            onCurrentCchange: currentChange,
+            ...$attrs
+        });
     }
 });
 </script>

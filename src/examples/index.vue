@@ -15,12 +15,12 @@
         >
             <v-form />
         </el-tab-pane>
-        <!-- <el-tab-pane
-            label="test"
-            name="test"
+        <el-tab-pane
+            label="formTable"
+            name="formTable"
         >
-            <test /> -->
-        <!-- </el-tab-pane> -->
+            <v-formtable />
+        </el-tab-pane>
     </el-tabs>
 </template>
 
@@ -30,17 +30,19 @@ import {
 } from 'vue';
 import vTable from './table.vue';
 import vForm from './form.vue';
+import vFormtable from './formTable.vue';
 // import test from './test.vue';
 
 export default defineComponent({
     name: 'Example',
     components: {
         vTable,
-        vForm
+        vForm,
+        vFormtable
         // test
     },
     setup(){
-        const activeName = ref<string>('table');
+        const activeName = ref<string>('formTable');
         return {
             activeName
         };

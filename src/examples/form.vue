@@ -3,11 +3,8 @@
         <lans-v-form
             ref="refForm"
             :configs="formConfig"
-            :inline="false"
             label-width="120px"
-            label-suffix=":"
             :col="3"
-            label-position="right"
             :init-form-data="{
                 input:'025-5726170'
             }"
@@ -34,10 +31,7 @@ import {
 } from 'vue';
 import { ElInput } from 'element-plus';
 import {
-    vForm,
-    FormItem,
-    Options,
-    FormUtils
+    vForm, FormItem, Options, FormUtils
 } from '../packages';
 
 const { handleNumberKeyPress }: FormUtils = new FormUtils();

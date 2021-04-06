@@ -13,3 +13,16 @@ export class TimeUtils {
         return [start,end]
     }
 }
+
+export class DebounceTime {
+    timer: any;
+    time: number;
+    constructor(time?:number) {
+        this.timer = null;
+        this.time = time || 1000 * 0.5;
+    }
+    run(cb:Function) {
+        this.timer && clearTimeout(this.timer);
+        this.timer = setTimeout(cb, this.time);
+    }
+}

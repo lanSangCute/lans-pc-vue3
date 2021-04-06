@@ -88,3 +88,9 @@ export interface FormItem{
     resetFields:()=>void;//对整个表单进行重置，将所有字段值重置为初始值并移除校验结果
     clearValidate:(props: Array<any> | String)=>void;//移除表单项的校验结果。传入待移除的表单项的 prop 属性或者 prop 组成的数组，如不传则移除整个表单的校验结果
 }
+
+interface ConfigForm{
+    notChange?:Boolean;
+    formData?: Object;
+    configData?: Array<FormItem>;
+}

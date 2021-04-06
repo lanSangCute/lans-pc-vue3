@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import {
     FormItem,
-    FormItemType,
+    FormItemType
 } from '../../types';
 import {
     ElInput,
@@ -17,9 +17,9 @@ import {
     ElSwitch,
     ElRadioGroup,
     ElRadio,
-    ElButton,
+    ElButton
 } from "element-plus";
-import { TimeUtils,FormUtils } from '../../utils'
+import { TimeUtils,FormUtils } from '../../utils';
 
 const formTypeGeneratorMap = {
     // editor: {

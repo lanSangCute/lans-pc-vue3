@@ -99,9 +99,17 @@ export interface TableColumn<T=string> {
     columnMoveBottom?:Boolean;//仅对type=render&&columnMove=true，传true的话，则emit下移事件columnMoveBottom
 }
 
-export class ResultTable{
+export interface ResultTable{
     results?:Array<any>;
     data?:Array<any>;
     list?:Array<any>;
     total?:Number
+}
+
+
+export interface TableScope{
+    $index: number;
+    column: ElComponentTableCAttrs;
+    row: Object;
+    store: any;
 }
