@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { reactive } from 'vue';
-import { Pager } from '../packages';
+import { Pager } from '../packages/types';
 export default defineComponent({
     name: 'e-pagination',
     setup(){

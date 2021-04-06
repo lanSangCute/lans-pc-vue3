@@ -31,8 +31,14 @@ import {
 } from 'vue';
 import { ElInput } from 'element-plus';
 import {
-    vForm, FormItem, Options, FormUtils
+    vForm
 } from '../packages';
+import {
+    FormItem, Options
+} from '../packages/types';
+import {
+    FormUtils
+} from '../packages/utils';
 
 const { handleNumberKeyPress }: FormUtils = new FormUtils();
 const optionsArr: Array<Options> = [

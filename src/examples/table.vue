@@ -64,8 +64,12 @@ import {
 } from 'vue';
 import { ElButton } from 'element-plus';
 import {
-    TableColumn, vTable
+    vTable
 } from '../packages';
+
+import {
+    TableColumn
+} from '../packages/types';
 
 interface TableItem<T=String> {
   readonly id: Number | T;

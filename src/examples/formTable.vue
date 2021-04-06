@@ -35,8 +35,11 @@ import {
     defineComponent, reactive, ref
 } from 'vue';
 import {
-    FormItem, TableColumn, vFormtable, TopOperation
+    vFormtable
 } from '../packages';
+import {
+    FormItem, TableColumn, TopOperation
+} from '../packages/types';
 
 interface TableItem<T=String> {
     readonly id: Number | T;
