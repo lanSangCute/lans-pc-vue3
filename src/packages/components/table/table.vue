@@ -35,12 +35,12 @@ export default defineComponent({
         // 配置列静态数据，可以通过配置外部importData数据，也可以通过接口请求数据，以静态数据为准
         importData: {
             type: Array as PropType<Array<Object>>,
-            default:() => []
+            default:() => ([])
         },
         // 查询接口参数
         params: {
             type: Object as PropType<Object>,
-            default: {}
+            default: () => ({})
         },
         // 对齐方式,默认居中对齐
         aligns:{
@@ -60,7 +60,7 @@ export default defineComponent({
         // 配置列数组
         tableColumn: {
             type: Array as PropType<Array<TableColumn>>,
-            default: () => []
+            default: () => ([])
         },
         // 接口请求前，对参数进行个别处理，paramsHandle:(params:Object):Object=>{}
         paramsHandle: {

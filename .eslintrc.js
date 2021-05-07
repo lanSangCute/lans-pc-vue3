@@ -17,6 +17,7 @@ module.exports = {
 	  'space-before-blocks':0,
 	  'key-spacing':0,
 	  'comma-dangle': [0, 'never'], //对象字面量项尾不能有逗号
+      'linebreak-style': 0,
 	  'comma-dangle': ["error", {
 		  "arrays": "never",
 		  "objects": "never",
@@ -65,4 +66,3 @@ module.exports = {
 	  },
 	},
   };
-  

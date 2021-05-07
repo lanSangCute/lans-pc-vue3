@@ -25,12 +25,12 @@ export default defineComponent({
         // form表单默认数据
         initFormData: {
             type: Object as PropType<Object>,
-            default: () => {}
+            default: () => ({})
         },
         // form表单配置项
         filterFormConfig: {
             type: Array as PropType<Array<FormItem>>,
-            default: () => []
+            default: () => ([])
         },
         // form表单行内表单模式
         filterInline: {
@@ -65,10 +65,10 @@ export default defineComponent({
         // 左右两部分代码
         topOperation: {
             type: Object as PropType<TopOperation>,
-            default: {
+            default: () => ({
                 left: [],
                 right: []
-            }
+            })
         },
         // 是否展示查询按钮
         showSearch: {
@@ -99,7 +99,7 @@ export default defineComponent({
         // 表格额外参数
         params: {
             type: Object as PropType<Object>,
-            default: {}
+            default: () => ({})
         },
         // 表格是否需要展示分页
         pagination: {
@@ -109,7 +109,7 @@ export default defineComponent({
         // 表格的tableColumn
         tableColumn: {
             type: Array as PropType<Array<TableColumn>>,
-            default: () => []
+            default: () => ([])
         },
         // 查询表格的接口路径
         services: {
@@ -127,7 +127,7 @@ export default defineComponent({
         },
         importData: {
             type: Array as PropType<Array<Object>>,
-            default: () => []
+            default: () => ([])
         },
         paramsHandle: {
             type: Function as PropType<Function>
@@ -142,7 +142,7 @@ export default defineComponent({
         },
         tableProps: {
             type: Object as PropType<Object>,
-            default: () => {}
+            default: () => ({})
         }
     },
     emits: [
