@@ -20,12 +20,12 @@ export default defineComponent({
         // 表单配置项
         configs: {
             type: [Function, Array],
-            default: () => {}
+            default: () => ([])
         },
         // 表单初始值
         initFormData: {
             type: Object as PropType<Object>,
-            default: {}
+            default: () => ({})
         },
         inline: {
             type: Boolean as PropType<Boolean>,
