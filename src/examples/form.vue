@@ -41,12 +41,9 @@ import {
 } from '../packages/utils';
 
 const { handleNumberKeyPress }: FormUtils = new FormUtils();
-const optionsArr: Array<Options> = [
-    { label: '状态1', value: '1' },
-    { label: '状态2', value: '2' },
-    { label: '状态3', value: '3' },
-    { label: '状态4', value: '4' }
-];
+const optionsArr: Array<Options> = Array.from({ length: 4 }, (item, index) => ({
+    label: `状态${index + 1}`, value: `${index + 1}`
+}));
 
 export default defineComponent({
     setup() {

@@ -55,6 +55,11 @@ export default defineComponent({
         col: {
             type: Number as PropType<Number>,
             default: 4
+        },
+        // 表单是否有规则，主要是区分详情和增改表单行间距
+        ruleYn: {
+            type: Boolean as PropType<Boolean>,
+            default: true
         }
     },
     emits:[
@@ -226,7 +231,7 @@ export default defineComponent({
             validate,
             validateField,
             resetFields:() => {
-                resetFields.bind(ctx.ctx)();
+                resetFields.bind((ctx as any).ctx)();
                 formDataHandle.formData = formDataHandle.getInitFormData(props.configs as Array<FormItem>);
             },
             clearValidate
@@ -362,7 +367,7 @@ export default defineComponent({
                 key:item.key,
                 label:item.label,
                 prop:item.key,
-                class:`el-item-w-100 ${item.className}`,
+                class: `el-item-w-100 ${this.ruleYn ? 'hasRule' : 'noRule'} ${item.className || ''}`,
                 style:{
                     'text-align': 'left'
                 },
@@ -421,9 +426,13 @@ input::-webkit-inner-spin-button {
 input[type="number"]{
   -moz-appearance: textfield;
 }
-
 .el-item-w-100 .el-form-item__label {
     word-break: break-all;
 }
-
+.noRule{
+    margin-bottom: 8px!important;
+}
+.hasRule{
+    margin-bottom: 18px!important;
+}
 </style>

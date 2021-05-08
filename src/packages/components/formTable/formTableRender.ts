@@ -14,6 +14,7 @@ export function formTableRender(h:any) {
         title,
         filterFormConfig,
         filterInline,
+        filterRuleYn,
         filterLabelWidth,
         filterLabelSuffix,
         filterCol,
@@ -74,7 +75,7 @@ export function formTableRender(h:any) {
 
     const searchAndReset = h('div', null, {
         default: () => [
-            showSearch ? h(ElButton, {
+            showSearch && h(ElButton, {
                 type: 'primary',
                 size: btnSize,
                 onClick: () => {
@@ -82,15 +83,15 @@ export function formTableRender(h:any) {
                 }
             }, {
                 default: () => [filterFormConfig ? '查询' : '刷新']
-            }) : null,
-            filterFormConfig && showReset ? h(ElButton, {
+            }),
+            filterFormConfig && showReset && h(ElButton, {
                 size: btnSize,
                 onClick: () => {
                     operationHandle({ handle: 'resetFilterForm' });
                 }
             }, {
                 default: () => '重置'
-            }) : null
+            })
         ]
     });
 
@@ -98,15 +99,16 @@ export function formTableRender(h:any) {
         class: 'component-configFilterTable h-100 w-100'
     }, {
         default: () => [
-            title ? h('div', {
+            title && h('div', {
                 class: 'text-20 title'
             }, {
                 default: () => title
-            }) : null,
+            }),
             h(vForm, {
                 ref: 'refForm',
                 configs: filterFormConfig,
                 inline: filterInline,
+                'rule-yn': filterRuleYn,
                 'label-width': filterLabelWidth,
                 'label-suffix': filterLabelSuffix,
                 'label-position': filterLabelPosition,
@@ -120,7 +122,7 @@ export function formTableRender(h:any) {
                     default: () => [searchAndReset]
                 }) : null]
             }),
-            !(!hasTopOperationLeft && topRightOperationLine) ? h('div', {
+            !(!hasTopOperationLeft && topRightOperationLine) && h('div', {
                 class: 'top-opertaions-container flex-ju-between mb-12'
             }, {
                 default: () => {
@@ -153,16 +155,16 @@ export function formTableRender(h:any) {
                                 default: () => [operationBtns(topOperation.left)]
                             })] : null]
                         }),
-                        !topRightOperationLine ? h('div', {
+                        !topRightOperationLine && h('div', {
                             class: 'right-operations-container d-block'
                         }, {
                             default: () => [searchAndReset]
-                        }) : null
+                        })
                     ];
                 }
-            }) : null,
+            }),
             $slots.default?.(),
-            showRequestNum ? h('div', {
+            showRequestNum && h('div', {
                 class: 'tip-container radius-4 mb-12'
             }, {
                 default: () => [
@@ -174,17 +176,17 @@ export function formTableRender(h:any) {
                     }, {
                         default: () => [
                             `共查询到 ${tableData.total || '-'} 条数据`,
-                            hasSelection ? h('span', null, {
+                            hasSelection && h('span', null, {
                                 default: () => [h('span', {
                                     class: 'color-blue'
                                 }, {
                                     default: () => `,已选择${selectionList.length}条数据`
                                 })]
-                            }) : null
+                            })
                         ]
                     })
                 ]
-            }) : null,
+            }),
             h(vTable, {
                 ref: 'refTable',
                 'table-column': tableColumn,

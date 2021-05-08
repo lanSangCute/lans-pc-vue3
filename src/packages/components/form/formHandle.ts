@@ -94,12 +94,15 @@ export class FormDataHandle{
                         (newFormData as any)[key] = formatting(val,timeFormat)
                     }
                     if(['daterange','datetimerange'].includes(type)){
-                        const start = formatting(val[0],timeFormat),
-                            end = formatting(val[1],timeFormat);
+                        
+                        const [startSource, endSource] = val,
+                            start = formatting(startSource,timeFormat),
+                            end = formatting(endSource,timeFormat);
                         (newFormData as any)[key] = [start,end];
                         if(Array.isArray(item.keyRange)){
-                            (newFormData as any)[item.keyRange[0]] = start;
-                            (newFormData as any)[item.keyRange[1]] = end;
+                            const [startRange, endRange] = item.keyRange;
+                            (newFormData as any)[startRange] = start;
+                            (newFormData as any)[endRange] = end;
                         }
                     }
                 }
@@ -195,15 +198,15 @@ export class RulesHandle{
     // 固定电话
     getTelFixedRules(){
         const { item } = this;
-        let telRule = null;
+        let fixedRule = null;
         if((!item.type || item.type === 'input') && item.telFixed){
-            telRule = {
+            fixedRule = {
                 pattern: /^0\d{2,3}-?\d{7,8}$/,
                 message: `请输入正确的${item.label}`,
                 trigger: 'blur'
             }
         }
-        return telRule;
+        return fixedRule;
     }
     
 }
