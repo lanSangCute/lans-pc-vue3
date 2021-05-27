@@ -57,6 +57,12 @@ export default defineComponent({
             type: Number as PropType<Number>,
             default: 4
         },
+        // 表单是否有规则，主要是区分详情和增改表单行间距
+        filterRuleYn:
+        {
+            type: Boolean,
+            default: false
+        },
         // 查询重置按钮是否和表单信息放在同一行
         topRightOperationLine: {
             type: Boolean as PropType<Boolean>,

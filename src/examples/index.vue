@@ -31,6 +31,7 @@ import {
 import vTable from './table.vue';
 import vForm from './form.vue';
 import vFormtable from './formTable.vue';
+import testFunc from './test';
 // import test from './test.vue';
 
 export default defineComponent({
@@ -42,6 +43,7 @@ export default defineComponent({
         // test
     },
     setup(){
+        testFunc();
         const activeName = ref<string>('formTable');
         return {
             activeName

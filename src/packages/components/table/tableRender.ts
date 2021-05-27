@@ -48,7 +48,6 @@ export function tableRender(h:any) {
                 style: {
                     width: '100%'
                 },
-                height: $attrs.height,
                 'highlight-current-row': true,
                 onSelectionChange:selectionChange,
                 ...$attrs
@@ -116,7 +115,7 @@ export function tableRender(h:any) {
                         }, {
                             default: (scope: TableScope) => (buttons || []).map((btn) => h('div', null, {
                                 default: () => [
-                                    btnCondition(btn, scope.row) ? h(ElButton, {
+                                    btnCondition(btn, scope.row) && h(ElButton, {
                                         key: label,
                                         disabled: btnDisabled(btn, scope.row),
                                         size: 'small',
@@ -127,7 +126,7 @@ export function tableRender(h:any) {
                                         }
                                     }, {
                                         default: () => label
-                                    }) : null
+                                    })
                                 ]
                             }))
                         });
@@ -155,7 +154,7 @@ export function tableRender(h:any) {
                                                 index: scope.$index
                                             }
                                         }),
-                                        cln.columnMove ? h('div', {
+                                        cln.columnMove && h('div', {
                                             class: 'ml-8'
                                         }, {
                                             default: () => [
@@ -176,7 +175,7 @@ export function tableRender(h:any) {
                                                     }
                                                 })
                                             ]
-                                        }) : null
+                                        })
                                     ]
                                 })
                             ]
@@ -197,9 +196,9 @@ export function tableRender(h:any) {
                         }, {
                             default: (scope: TableScope) => [
                                 formatFun(scope.row, scope.column),
-                                slot ? h('slot', null, {
+                                slot && h('slot', null, {
                                     default: () => $slots[slot]?.(scope)
-                                }) : null,
+                                }),
                             ],
                             header: (scope: any) => [
                                 header ? h('slot', null, {
@@ -215,12 +214,12 @@ export function tableRender(h:any) {
                 disabled: false
             }, {
                 default: () => [
-                    pagination ? h(vPagination, {
+                    pagination && h(vPagination, {
                         class: 'tncm-pagination',
                         page: pager,
                         total,
                         onChange: pageChange
-                    }) : null,
+                    }),
                     $slots.foot?.({
                         ...getFullData
                     })
